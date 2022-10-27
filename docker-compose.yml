@@ -1,8 +1,13 @@
 version: "3.8"
 
+networks:
+    laravel:
+
 services:
     # PHP Server
     php:
+        networks:
+            - laravel
         build:
             context: .
             target: php
@@ -22,19 +27,23 @@ services:
 
     # Database Server
     database:
+        networks:
+            - laravel
         image: mysql:8.0
         ports:
             - 3306:3306
         environment:
             - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
             - MYSQL_PASSWORD=${DB_PASSWORD}
             - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-            - MYSQL_ALLOW_EMPTY_PASSWORD=1
         volumes:
             - db-data:/var/lib/mysql
 
     # Redis Server
     redis:
+        networks:
+            - laravel
         image: redis:alpine
         command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
         ports:
@@ -42,6 +51,8 @@ services:
 
     # Node Server
     node:
+        networks:
+            - laravel
         build:
             context: .
             target: node
