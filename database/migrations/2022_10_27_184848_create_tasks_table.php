@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->string('name');
-            $table->boolean('complete')->default(false);
+            $table->enum('complete', ['0', '1'])->default('0');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
