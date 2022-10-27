@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->nullable()->constrained();
             $table->string('name');
-            $table->boolean('done')->default(false);
+            $table->boolean('complete')->default(false);
             $table->timestamps();
         });
     }
