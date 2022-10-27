@@ -20,6 +20,9 @@ docker-compose up
 ````
 
 ## Route
-Login with Github account to get the access token so you can try out the api.
-- http://localhost:8000/api/login/github
-- http://localhost:8000/api/tasks
+Login with Github account using the following route:
+
+http://localhost:8000/api/login/github
+
+## API Endpoint
+http://localhost:8000/api/tasks
